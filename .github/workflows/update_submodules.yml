@@ -12,11 +12,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
-        with:
-          submodules: true  # This checks out submodules as well
-
       - name: Update Submodules
         run: |
           git submodule foreach '
