@@ -21,6 +21,7 @@ jobs:
         run: |
           git submodule foreach '
             default_branch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
+            git config pull.rebase true
             git pull origin $default_branch
           '
 
