@@ -1,33 +1,43 @@
 name: Update Submodules
 
 on:
-  push:
-    branches:
-      - main
   schedule:
-    - cron: '0,20,40 * * * *' # This runs the workflow every hour
+    - cron: '0,20,40 * * * *' # This runs the workflow every 20 minutes
 
 jobs:
   update-submodules:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Update Submodules
-        run: |
-          git submodule foreach '
-            git config user.email "github-actions@github.com"
-            git config user.name "GitHub Actions"
-            git config pull.rebase true
-            git pull origin master
-          '
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: true  # This checks out submodules as well
 
+      - name: Update FlyPost_frontend Submodule
+        run: |
+          cd FlyPost_frontend
+          git fetch origin
+          git checkout master
+          git pull origin master
+          cd ..
+          git add FlyPost_frontend
+          
+      - name: Update FlyPost_mobile_ Submodule
+        run: |
+          cd FlyPost_mobile_
+          git fetch origin
+          git checkout master
+          git pull origin master
+          cd ..
+          git add FlyPost_mobile_
+          
       - name: Commit and Push Changes
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
-          git add .
-          git commit -m "Update submodules to the latest version" || echo "No changes to commit"
+          git commit -m "Update submodules to the latest versions" || echo "No changes to commit"
+          git pull --rebase origin main
           git push origin main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
