@@ -20,11 +20,10 @@ jobs:
       - name: Update Submodules
         run: |
           git submodule foreach '
-            default_branch=$(git remote show origin | grep "HEAD branch" | cut -d ":" -f 2 | xargs)
             git config user.email "github-actions@github.com"
             git config user.name "GitHub Actions"
             git config pull.rebase true
-            git pull origin $default_branch
+            git pull origin master
           '
 
       - name: Commit and Push Changes
