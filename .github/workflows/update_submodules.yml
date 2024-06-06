@@ -31,6 +31,15 @@ jobs:
           git pull origin master
           cd ..
           git add FlyPost_mobile_
+
+      - name: Update FlyPost_mobile_ Submodule
+        run: |
+          cd FlyPost_backend
+          git fetch origin
+          git checkout main
+          git pull origin main
+          cd ..
+          git add FlyPost_backend
           
       - name: Commit and Push Changes
         run: |
