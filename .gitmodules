@@ -4,9 +4,6 @@
 [submodule "FlyPost_mobile_"]
 	path = FlyPost_mobile_
 	url = https://github.com/Zhmykh/FlyPost_mobile.git
-[submodule "FlypostBack"]
-	path = FlypostBack
-	url = https://github.com/sosiksaWteste/FlypostBack
 [submodule "FlyPost_backend"]
 	path = FlyPost_backend
 	url = https://github.com/sosiksaWteste/FlypostBack
