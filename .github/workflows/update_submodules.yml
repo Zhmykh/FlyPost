@@ -32,7 +32,7 @@ jobs:
           cd ..
           git add FlyPost_mobile_
 
-      - name: Update FlyPost_mobile_ Submodule
+      - name: Update FlyPost_backend Submodule
         run: |
           cd FlyPost_backend
           git fetch origin
